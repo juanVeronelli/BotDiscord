@@ -1,3 +1,8 @@
+
+if(process.env.NODE_ENV != 'production'){
+    require('dotenv').config();
+}
+
 //Discord.js Constantes
 const { Client, Intents, MessageEmbed,} = require('discord.js');
 const client = new Client({
@@ -27,8 +32,9 @@ let explore_cooldowns = new Set();
 
 
 // Base de datos
-const url = 'mongodb+srv://JuanVeronelli:llive@discordbot.nyuxp.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
-const db = require('./utils/db')
+const url = process.env.SV
+const db = require('./utils/db');
+
 
 //Prefix Del Bot
 const prefix = '!';
@@ -218,4 +224,4 @@ client.on("messageCreate", async (message)=>{
 
 
 
-client.login("OTY1MzMwNjE1ODU3NzM3NzM4.YlxoMQ.6JRp5NzsSSYRnupJ9YACXK8oxGc");
+client.login(process.env.TOKEN);
